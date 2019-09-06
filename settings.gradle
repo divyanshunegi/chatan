@@ -1,0 +1,2 @@
+include ':app', ':chatanlib', ':chatex'
+rootProject.name='Chatan'
