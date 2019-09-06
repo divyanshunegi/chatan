@@ -16,6 +16,7 @@ object Chatex {
     private var localtouchX = 0f
     private var localtouchY = 0f
     private lateinit var chatexView: ChatExView
+    private var giphyKey = ""
 
     /**
      * Pass the ChatexView added in your layout
@@ -111,6 +112,10 @@ object Chatex {
             return false
         }
         return true
+    }
+
+    fun setGiphyKey(key: String) {
+        giphyKey = key
     }
 
     interface ChatExListener {

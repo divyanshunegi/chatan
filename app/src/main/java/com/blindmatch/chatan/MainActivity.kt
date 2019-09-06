@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Chatex.initView(chatexView)
+        Chatex.setGiphyKey("9uR8VZoyzBI56xA9f9IQDE02j9ob1jF3")
         floatingActionButton.setOnClickListener {
             Chatex.toggleView(it.x, it.y)
         }
