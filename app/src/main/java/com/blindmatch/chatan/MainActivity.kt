@@ -16,4 +16,16 @@ class MainActivity : AppCompatActivity() {
             Chatex.toggleView(chatexView, it.x, it.y)
         }
     }
+
+    override fun onBackPressed() {
+        if (Chatex.chatExBackPressHandler(
+                chatexView,
+                floatingActionButton.x,
+                floatingActionButton.y
+            )
+        ) {
+            super.onBackPressed()
+        }
+
+    }
 }

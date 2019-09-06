@@ -51,6 +51,7 @@ object Chatex {
 
     private fun show(view: View, touchX: Float = 0f, touchY: Float = 0f) {
         // get the center for the clipping circle
+        view.visibility = View.VISIBLE
         val cx: Float = if (touchX == 0f) view.width / 2f else touchX
         val cy: Float = if (touchY == 0f) view.height / 2f else touchY
 
@@ -61,8 +62,33 @@ object Chatex {
         val anim =
             ViewAnimationUtils.createCircularReveal(view, cx.toInt(), cy.toInt(), 0f, finalRadius)
         // make the view visible and start the animation
-        view.visibility = View.VISIBLE
         anim.start()
+    }
+
+    fun showYoutubeSearch() {
+
+    }
+
+    fun showGifSearch() {
+
+    }
+
+    fun showStickerSearch() {
+
+    }
+
+    fun chatExBackPressHandler(view: View?, touchX: Float = 0f, touchY: Float = 0f): Boolean {
+        if (isShareViewVisible) {
+            toggleView(view, touchX, touchY)
+            return false
+        }
+        return true
+    }
+
+    interface ChatExListener {
+        fun onYoutubeVideo()
+        fun onGiphy()
+        fun onSticker()
     }
 
 }
