@@ -12,20 +12,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Chatex.initView(chatexView)
         floatingActionButton.setOnClickListener {
-            Chatex.toggleView(chatexView, it.x, it.y)
+            Chatex.toggleView(it.x, it.y)
         }
     }
 
     override fun onBackPressed() {
-        if (Chatex.chatExBackPressHandler(
-                chatexView,
-                floatingActionButton.x,
-                floatingActionButton.y
-            )
-        ) {
+        if (Chatex.chatExBackPressHandler()) {
             super.onBackPressed()
         }
-
     }
 }

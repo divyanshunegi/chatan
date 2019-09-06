@@ -13,54 +13,82 @@ import kotlin.math.hypot
 object Chatex {
 
     private var isShareViewVisible = false
+    private var localtouchX = 0f
+    private var localtouchY = 0f
+    private lateinit var chatexView: ChatExView
 
-    fun toggleView(view: View?, touchX: Float = 0f, touchY: Float = 0f) {
+    /**
+     * Pass the ChatexView added in your layout
+     * @param(view: ChatExView added in your layout,
+     * X cordinate for the touch icon which will trigger this view,
+     * Y cordinate for the touch icon which will trigger this view)
+     */
+    fun initView(view: ChatExView?) {
         if (view == null) {
             throw RuntimeException("Toggle View must be passed with the ChatEx View you are trying to toggle")
         }
+        chatexView = view
+    }
+
+    fun toggleView(touchX: Float = 0f, touchY: Float = 0f) {
+        if (touchX != 0f || touchY != 0f) {
+            localtouchX = touchX
+            localtouchY = touchY
+        }
         if (isShareViewVisible) {
             isShareViewVisible = false
-            hide(view, touchX, touchY)
+            hide()
         } else {
             isShareViewVisible = true
-            show(view, touchX, touchY)
+            show()
         }
     }
 
-    private fun hide(view: View, touchX: Float = 0f, touchY: Float = 0f) {
+    private fun hide() {
         // get the center for the clipping circle
-        val cx: Float = if (touchX == 0f) view.width / 2f else touchX
-        val cy: Float = if (touchY == 0f) view.height / 2f else touchY
+        val cx: Float = if (localtouchX == 0f) chatexView.width / 2f else localtouchX
+        val cy: Float = if (localtouchY == 0f) chatexView.height / 2f else localtouchY
 
         // get the final radius for the clipping circle
         val finalRadius = hypot(cx.toDouble(), cy.toDouble()).toFloat()
 
         // create the animator for this view (the start radius is zero)
         val anim =
-            ViewAnimationUtils.createCircularReveal(view, cx.toInt(), cy.toInt(), finalRadius, 0f)
+            ViewAnimationUtils.createCircularReveal(
+                chatexView,
+                cx.toInt(),
+                cy.toInt(),
+                finalRadius,
+                0f
+            )
         // make the view visible and start the animation
         anim.addListener(object : AnimatorListenerAdapter() {
-
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
-                view.visibility = View.INVISIBLE
+                chatexView.visibility = View.INVISIBLE
             }
         })
         anim.start()
     }
 
-    private fun show(view: View, touchX: Float = 0f, touchY: Float = 0f) {
+    private fun show() {
         // get the center for the clipping circle
-        view.visibility = View.VISIBLE
-        val cx: Float = if (touchX == 0f) view.width / 2f else touchX
-        val cy: Float = if (touchY == 0f) view.height / 2f else touchY
+        chatexView.visibility = View.VISIBLE
+        val cx: Float = if (localtouchX == 0f) chatexView.width / 2f else localtouchX
+        val cy: Float = if (localtouchY == 0f) chatexView.height / 2f else localtouchY
 
         // get the final radius for the clipping circle
         val finalRadius = hypot(cx.toDouble(), cy.toDouble()).toFloat()
 
         // create the animator for this view (the start radius is zero)
         val anim =
-            ViewAnimationUtils.createCircularReveal(view, cx.toInt(), cy.toInt(), 0f, finalRadius)
+            ViewAnimationUtils.createCircularReveal(
+                chatexView,
+                cx.toInt(),
+                cy.toInt(),
+                0f,
+                finalRadius
+            )
         // make the view visible and start the animation
         anim.start()
     }
@@ -77,9 +105,9 @@ object Chatex {
 
     }
 
-    fun chatExBackPressHandler(view: View?, touchX: Float = 0f, touchY: Float = 0f): Boolean {
+    fun chatExBackPressHandler(): Boolean {
         if (isShareViewVisible) {
-            toggleView(view, touchX, touchY)
+            toggleView()
             return false
         }
         return true
