@@ -16,7 +16,9 @@ object Chatex {
     private var localtouchX = 0f
     private var localtouchY = 0f
     private lateinit var chatexView: ChatExView
-    private var giphyKey = ""
+    var giphyKey = ""
+    var youtubeKey = ""
+
 
     /**
      * Pass the ChatexView added in your layout
@@ -24,10 +26,12 @@ object Chatex {
      * X cordinate for the touch icon which will trigger this view,
      * Y cordinate for the touch icon which will trigger this view)
      */
-    fun initView(view: ChatExView?) {
+    fun initialize(view: ChatExView? = null, giphKey: String = "", youtubeKey: String = "") {
         if (view == null) {
             throw RuntimeException("Toggle View must be passed with the ChatEx View you are trying to toggle")
         }
+        this.giphyKey = giphKey
+        this.youtubeKey = youtubeKey
         chatexView = view
     }
 
@@ -94,28 +98,12 @@ object Chatex {
         anim.start()
     }
 
-    fun showYoutubeSearch() {
-
-    }
-
-    fun showGifSearch() {
-
-    }
-
-    fun showStickerSearch() {
-
-    }
-
     fun chatExBackPressHandler(): Boolean {
         if (isShareViewVisible) {
             toggleView()
             return false
         }
         return true
-    }
-
-    fun setGiphyKey(key: String) {
-        giphyKey = key
     }
 
     interface ChatExListener {
