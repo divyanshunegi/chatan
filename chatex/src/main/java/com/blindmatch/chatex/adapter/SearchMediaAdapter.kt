@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.blindmatch.chatex.adapter.delegates.GifAdapterDelegate
 import com.blindmatch.chatex.adapter.delegates.UnsupportedAdapterDelegate
+import com.blindmatch.chatex.adapter.delegates.YoutubeAdapterDelegate
 import com.blindmatch.chatex.model.MediaData
 import com.blindmatch.chatex.model.MediaType
 
@@ -20,32 +21,13 @@ class SearchMediaAdapter(private var dataList: List<MediaData> = emptyList(), va
             MediaType.GIF,
             listener
         )
-//    private val imageDelegate =
-//        ChatImageAdapterDelegate(ChatType.IMAGE)
-//
-//    private val leaveDelegate =
-//        ChatLeaveAdapterDelegate(
-//            ChatType.LEAVE,
-//            listener
-//        )
-//    private val videoDelegate =
-//        ChatVideoAdapterDelegate(
-//            ChatType.VIDEO,
-//            listener
-//        )
-//
-//    private val friendRequestDelegate =
-//        ChatFriendRequestAdapterDelegate(
-//            ChatType.FRIEND_REQUEST,
-//            listener
-//        )
-//
-//    private val friendRequestAcceptedDelegate =
-//        ChatFriendRequestAdapterDelegate(
-//            ChatType.FRIEND_REQUEST_ACCEPTED,
-//            listener
-//        )
-//
+
+    private val youtubeDelegate =
+        YoutubeAdapterDelegate(
+            MediaType.YOUTUBE,
+            listener
+        )
+
     private val unsupportedDelegate =
         UnsupportedAdapterDelegate(
             MediaType.UNSUPPORTED,
@@ -55,6 +37,7 @@ class SearchMediaAdapter(private var dataList: List<MediaData> = emptyList(), va
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             textDelegate.viewType -> textDelegate.onCreateViewHolder(parent)
+            youtubeDelegate.viewType -> youtubeDelegate.onCreateViewHolder(parent)
             else -> unsupportedDelegate.onCreateViewHolder(parent)
         }
     }
@@ -67,20 +50,18 @@ class SearchMediaAdapter(private var dataList: List<MediaData> = emptyList(), va
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val viewType = holder.itemViewType
+        holder.itemView.setOnClickListener {
+            listener.onMediaSelected(dataList[position])
+        }
         when (viewType) {
             textDelegate.viewType -> textDelegate.onBindViewHolder(dataList, position, holder)
+            youtubeDelegate.viewType -> youtubeDelegate.onBindViewHolder(dataList, position, holder)
             else -> unsupportedDelegate.onBindViewHolder(dataList, position, holder)
         }
     }
 
-//    fun update(messages: List<MediaData>?) {
-//        if (messages != null) {
-//            dataList = messages
-//        }
-//        notifyDataSetChanged()
-//    }
 }
 
 interface MediaAdapterListener {
-    fun onMediaSelected()
+    fun onMediaSelected(mediaData: MediaData)
 }

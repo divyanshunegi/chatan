@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blindmatch.chatex.adapter.MediaAdapterListener
@@ -134,7 +135,7 @@ class ChatExView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
                         MediaData(
                             title = it.snippet?.title,
                             mediaLink = it.snippet?.thumbnails?.high?.url,
-                            type = MediaType.GIF
+                            type = MediaType.YOUTUBE
                         )
                     )
                 }
@@ -149,8 +150,8 @@ class ChatExView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
         }
     }
 
-    override fun onMediaSelected() {
-
+    override fun onMediaSelected(mediaData: MediaData) {
+        Toast.makeText(context, mediaData.toString(), Toast.LENGTH_LONG).show()
     }
 
     private lateinit var adapter: SearchMediaAdapter
