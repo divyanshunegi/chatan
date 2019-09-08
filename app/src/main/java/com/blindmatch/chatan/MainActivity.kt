@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity(), Chatex.ChatexListener {
         setContentView(R.layout.activity_main)
         Chatex.initialize(
             view = chatexView,
-            giphKey = "9uR8VZoyzBI56xA9f9IQDE02j9ob1jF3",
-            youtubeKey = "AIzaSyAz8hdZGnjGDxZZj2bcbA-a48hIsVmNfJ0"
+            giphKey = "giphy_api_key",
+            youtubeKey = "youtube_key"
         )
         Chatex.addListener(this)
         floatingActionButton.setOnClickListener {
