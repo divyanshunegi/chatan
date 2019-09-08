@@ -151,7 +151,7 @@ class ChatExView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
     }
 
     override fun onMediaSelected(mediaData: MediaData) {
-        Toast.makeText(context, mediaData.toString(), Toast.LENGTH_LONG).show()
+        Chatex.mediaSelected(mediaData)
     }
 
     private lateinit var adapter: SearchMediaAdapter
@@ -236,7 +236,7 @@ class ChatExView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
     private fun setSearchHint() {
         when (selected) {
             ButtonType.YOUTUBE -> searchView.hint = "Search Youtube video..."
-            ButtonType.GIF -> searchView.hint = "Search Gifs"
+            ButtonType.GIF -> searchView.hint = "Search Gifs, Powered By GIPHY"
             ButtonType.STICKER -> searchView.hint = "Search Stickers"
         }
         searchView.requestFocus()

@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.view.View
 import android.view.ViewAnimationUtils
+import com.blindmatch.chatex.model.MediaData
 import kotlin.math.hypot
 
 /**
@@ -106,10 +107,8 @@ object Chatex {
         return true
     }
 
-    interface ChatExListener {
-        fun onYoutubeVideo()
-        fun onGiphy()
-        fun onSticker()
+    fun mediaSelected(mediaData: MediaData) {
+
     }
 
 }
