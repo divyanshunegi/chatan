@@ -151,6 +151,8 @@ class ChatExView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
     }
 
     override fun onMediaSelected(mediaData: MediaData) {
+        ic_cancel_button.performClick()
+        Chatex.toggleView()
         Chatex.mediaSelected(mediaData)
     }
 
