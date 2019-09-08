@@ -17,6 +17,7 @@ object Chatex {
     private var localtouchX = 0f
     private var localtouchY = 0f
     private lateinit var chatexView: ChatExView
+    private var listener: ChatexListener? = null
     var giphyKey = ""
     var youtubeKey = ""
 
@@ -107,8 +108,17 @@ object Chatex {
         return true
     }
 
-    fun mediaSelected(mediaData: MediaData) {
-
+    fun addListener(chatexListener: ChatexListener) {
+        this.listener = chatexListener
     }
 
+
+    fun mediaSelected(mediaData: MediaData) {
+        this.listener?.onMediaSelected(mediaData)
+    }
+
+
+    interface ChatexListener {
+        fun onMediaSelected(mediaData: MediaData)
+    }
 }
