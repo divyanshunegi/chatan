@@ -185,6 +185,8 @@ class ChatExView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
             ic_cancel_button.visibility = View.VISIBLE
             setSearchHint()
             dataList.clear()
+            dataList.addAll(Chatex.getYoutubeCachedList())
+            adapter.notifyDataSetChanged()
         }
 
         gif_select.setOnClickListener {
@@ -196,6 +198,8 @@ class ChatExView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
             ic_cancel_button.visibility = View.VISIBLE
             setSearchHint()
             dataList.clear()
+            dataList.addAll(Chatex.getGIFCachedList())
+            adapter.notifyDataSetChanged()
         }
 
         sticker_select.setOnClickListener {
@@ -207,6 +211,8 @@ class ChatExView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
             ic_cancel_button.visibility = View.VISIBLE
             setSearchHint()
             dataList.clear()
+            dataList.addAll(Chatex.getStickerCachedList())
+            adapter.notifyDataSetChanged()
         }
 
         setupSearchListView()

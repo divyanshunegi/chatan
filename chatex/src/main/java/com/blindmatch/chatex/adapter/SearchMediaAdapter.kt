@@ -3,6 +3,7 @@ package com.blindmatch.chatex.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.blindmatch.chatex.adapter.delegates.GifAdapterDelegate
+import com.blindmatch.chatex.adapter.delegates.StickerAdapterDelegate
 import com.blindmatch.chatex.adapter.delegates.UnsupportedAdapterDelegate
 import com.blindmatch.chatex.adapter.delegates.YoutubeAdapterDelegate
 import com.blindmatch.chatex.model.MediaData
@@ -34,10 +35,17 @@ class SearchMediaAdapter(private var dataList: List<MediaData> = emptyList(), va
             listener
         )
 
+    private val stickerAdapterDelegate =
+        StickerAdapterDelegate(
+            MediaType.STICKER,
+            listener
+        )
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             textDelegate.viewType -> textDelegate.onCreateViewHolder(parent)
             youtubeDelegate.viewType -> youtubeDelegate.onCreateViewHolder(parent)
+            stickerAdapterDelegate.viewType -> stickerAdapterDelegate.onCreateViewHolder(parent)
             else -> unsupportedDelegate.onCreateViewHolder(parent)
         }
     }
@@ -56,6 +64,7 @@ class SearchMediaAdapter(private var dataList: List<MediaData> = emptyList(), va
         when (viewType) {
             textDelegate.viewType -> textDelegate.onBindViewHolder(dataList, position, holder)
             youtubeDelegate.viewType -> youtubeDelegate.onBindViewHolder(dataList, position, holder)
+            stickerAdapterDelegate.viewType -> stickerAdapterDelegate.onBindViewHolder(dataList, position, holder)
             else -> unsupportedDelegate.onBindViewHolder(dataList, position, holder)
         }
     }
