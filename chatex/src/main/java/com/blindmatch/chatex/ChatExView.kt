@@ -65,7 +65,7 @@ class ChatExView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
                         MediaData(
                             title = giph.title,
                             mediaLink = giph.images.previewGif.url,
-                            type = MediaType.GIF
+                            type = MediaType.STICKER
                         )
                     )
                 }
