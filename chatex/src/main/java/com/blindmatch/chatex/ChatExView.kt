@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blindmatch.chatex.adapter.MediaAdapterListener
 import com.blindmatch.chatex.adapter.SearchMediaAdapter
+import com.blindmatch.chatex.adapter.SpeedyLinearLayoutManager
 import com.blindmatch.chatex.api.ChatexService
 import com.blindmatch.chatex.model.MediaData
 import com.blindmatch.chatex.model.MediaType
@@ -45,7 +46,6 @@ class ChatExView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
     }
 
     private fun searchInSticker() {
-
         if (!searchQuery.isNotEmpty()) {
             progressBar.visibility = View.INVISIBLE
             return
@@ -157,7 +157,7 @@ class ChatExView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
     }
 
     private lateinit var adapter: SearchMediaAdapter
-    private lateinit var manager: LinearLayoutManager
+    private lateinit var manager: SpeedyLinearLayoutManager
     private val dataList: MutableList<MediaData> = mutableListOf()
 
     init {
@@ -253,7 +253,7 @@ class ChatExView(context: Context, attrs: AttributeSet) : ConstraintLayout(conte
     }
 
     private fun setupSearchListView() {
-        manager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        manager = SpeedyLinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         adapter = SearchMediaAdapter(dataList, this)
         productsListView.layoutManager = manager
         productsListView.adapter = adapter
