@@ -1,8 +1,10 @@
 package com.blindmatch.chatex.model
 
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class GiphyModel(
     @SerializedName("data")
     val `data`: List<Data> = listOf(),
@@ -11,6 +13,7 @@ data class GiphyModel(
     @SerializedName("pagination")
     val pagination: Pagination = Pagination()
 ) {
+    @Keep
     data class Pagination(
         @SerializedName("count")
         val count: Int = 0,
@@ -20,6 +23,7 @@ data class GiphyModel(
         val totalCount: Int = 0
     )
 
+    @Keep
     data class Data(
         @SerializedName("analytics")
         val analytics: Analytics = Analytics(),
@@ -62,6 +66,7 @@ data class GiphyModel(
         @SerializedName("username")
         val username: String = ""
     ) {
+        @Keep
         data class Images(
             @SerializedName("downsized")
             val downsized: Downsized = Downsized(),
@@ -110,6 +115,7 @@ data class GiphyModel(
             @SerializedName("480w_still")
             val wStill: WStill = WStill()
         ) {
+            @Keep
             data class FixedHeight(
                 @SerializedName("height")
                 val height: String = "",
@@ -129,6 +135,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class OriginalStill(
                 @SerializedName("height")
                 val height: String = "",
@@ -138,6 +145,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class OriginalMp4(
                 @SerializedName("height")
                 val height: String = "",
@@ -149,6 +157,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class FixedWidthDownsampled(
                 @SerializedName("height")
                 val height: String = "",
@@ -164,6 +173,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class FixedHeightStill(
                 @SerializedName("height")
                 val height: String = "",
@@ -173,6 +183,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class FixedWidthSmall(
                 @SerializedName("height")
                 val height: String = "",
@@ -192,6 +203,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class FixedHeightSmallStill(
                 @SerializedName("height")
                 val height: String = "",
@@ -201,6 +213,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class Looping(
                 @SerializedName("mp4")
                 val mp4: String = "",
@@ -208,6 +221,7 @@ data class GiphyModel(
                 val mp4Size: String = ""
             )
 
+            @Keep
             data class DownsizedMedium(
                 @SerializedName("height")
                 val height: String = "",
@@ -219,6 +233,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class Original(
                 @SerializedName("frames")
                 val frames: String = "",
@@ -240,6 +255,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class Preview(
                 @SerializedName("height")
                 val height: String = "",
@@ -251,6 +267,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class WStill(
                 @SerializedName("height")
                 val height: String = "",
@@ -260,6 +277,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class PreviewWebp(
                 @SerializedName("height")
                 val height: String = "",
@@ -271,6 +289,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class Downsized(
                 @SerializedName("height")
                 val height: String = "",
@@ -282,6 +301,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class FixedHeightSmall(
                 @SerializedName("height")
                 val height: String = "",
@@ -301,6 +321,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class DownsizedLarge(
                 @SerializedName("height")
                 val height: String = "",
@@ -312,6 +333,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class DownsizedSmall(
                 @SerializedName("height")
                 val height: String = "",
@@ -323,6 +345,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class FixedWidthSmallStill(
                 @SerializedName("height")
                 val height: String = "",
@@ -332,6 +355,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class FixedWidth(
                 @SerializedName("height")
                 val height: String = "",
@@ -351,6 +375,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class FixedWidthStill(
                 @SerializedName("height")
                 val height: String = "",
@@ -360,6 +385,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class PreviewGif(
                 @SerializedName("height")
                 val height: String = "",
@@ -371,6 +397,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class DownsizedStill(
                 @SerializedName("height")
                 val height: String = "",
@@ -382,6 +409,7 @@ data class GiphyModel(
                 val width: String = ""
             )
 
+            @Keep
             data class FixedHeightDownsampled(
                 @SerializedName("height")
                 val height: String = "",
@@ -398,6 +426,7 @@ data class GiphyModel(
             )
         }
 
+        @Keep
         data class Analytics(
             @SerializedName("onclick")
             val onclick: Onclick = Onclick(),
@@ -406,22 +435,26 @@ data class GiphyModel(
             @SerializedName("onsent")
             val onsent: Onsent = Onsent()
         ) {
+            @Keep
             data class Onsent(
                 @SerializedName("url")
                 val url: String = ""
             )
 
+            @Keep
             data class Onclick(
                 @SerializedName("url")
                 val url: String = ""
             )
 
+            @Keep
             data class Onload(
                 @SerializedName("url")
                 val url: String = ""
             )
         }
 
+        @Keep
         data class User(
             @SerializedName("avatar_url")
             val avatarUrl: String = "",
@@ -440,6 +473,7 @@ data class GiphyModel(
         )
     }
 
+    @Keep
     data class Meta(
         @SerializedName("msg")
         val msg: String = "",

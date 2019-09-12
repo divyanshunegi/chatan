@@ -1,9 +1,12 @@
 package com.blindmatch.chatex.model
 
+import androidx.annotation.Keep
+
 /**
  * Created by divyanshunegi on 2019-09-07.
  * Project : Chatan
  */
+@Keep
 data class MediaData(
     var title: String? = "",
     var mediaLink: String? = "",
