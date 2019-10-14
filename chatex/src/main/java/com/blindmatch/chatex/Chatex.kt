@@ -41,7 +41,7 @@ object Chatex {
         chatexView = view
     }
 
-    fun toggleView(touchX: Float = 0f, touchY: Float = 0f) {
+    fun toggleView(touchX: Float = 0f, touchY: Float = 0f, type: Int = MediaType.YOUTUBE) {
         if (touchX != 0f || touchY != 0f) {
             localtouchX = touchX
             localtouchY = touchY
@@ -51,7 +51,7 @@ object Chatex {
             hide()
         } else {
             isShareViewVisible = true
-            show()
+            show(type)
         }
     }
 
@@ -82,8 +82,9 @@ object Chatex {
         anim.start()
     }
 
-    private fun show() {
+    private fun show(type: Int) {
         // get the center for the clipping circle
+        chatexView.enableType(type)
         chatexView.visibility = View.VISIBLE
         val cx: Float = if (localtouchX == 0f) chatexView.width / 2f else localtouchX
         val cy: Float = if (localtouchY == 0f) chatexView.height / 2f else localtouchY

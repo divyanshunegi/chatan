@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.blindmatch.chatex.Chatex
 import com.blindmatch.chatex.model.MediaData
+import com.blindmatch.chatex.model.MediaType
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Chatex.ChatexListener {
@@ -24,8 +25,19 @@ class MainActivity : AppCompatActivity(), Chatex.ChatexListener {
             youtubeKey = "youtube_key"
         )
         Chatex.addListener(this)
-        floatingActionButton.setOnClickListener {
-            Chatex.toggleView(it.x, it.y)
+        floatingActionButtonYT.setOnClickListener {
+            Toast.makeText(this, "Youtube", Toast.LENGTH_LONG).show()
+            Chatex.toggleView(it.x, it.y, type = MediaType.YOUTUBE)
+        }
+
+        floatingActionButtonGif.setOnClickListener {
+            Toast.makeText(this, "GIF", Toast.LENGTH_LONG).show()
+            Chatex.toggleView(it.x, it.y, type = MediaType.GIF)
+        }
+
+        floatingActionButtonSticker.setOnClickListener {
+            Toast.makeText(this, "Sticker", Toast.LENGTH_LONG).show()
+            Chatex.toggleView(it.x, it.y, type = MediaType.STICKER)
         }
     }
 
